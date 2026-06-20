@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rhey Mar Dimayuga | Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0e1a;
+      --surface:   #111827;
+      --card:      #1a2236;
+      --border:    #1e2d45;
+      --accent:    #2563eb;
+      --accent2:   #3b82f6;
+      --glow:      #2563eb33;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10,14,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--accent2);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; letter-spacing: 0.03em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, #2563eb18 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 760px; width: 100%; }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem; color: var(--accent2);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 1px; background: var(--accent2);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 520px; margin-bottom: 2.5rem; line-height: 1.7;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff; border: none;
+      box-shadow: 0 0 20px var(--glow);
+    }
+    .btn-primary:hover { background: var(--accent2); box-shadow: 0 0 32px #2563eb55; }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--accent2); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; margin-bottom: 4rem;
+    }
+    .stat {
+      background: var(--card); padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--mono); font-size: 2rem; font-weight: 600;
+      color: var(--accent2); display: block; line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .skill-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--glow); border: 1px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+    .skill-name {
+      font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem;
+    }
+    .skill-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .project-tag {
+      font-family: var(--mono); font-size: 0.7rem;
+      color: var(--accent2); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    .project-title {
+      font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem;
+    }
+    .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .project-tools {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem;
+    }
+    .tool-badge {
+      font-family: var(--mono); font-size: 0.7rem;
+      background: var(--surface); color: var(--muted);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+    .about-list { list-style: none; }
+    .about-list li {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.85rem; color: var(--muted);
+      padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .about-list li::before {
+      content: '▸'; color: var(--accent2); font-size: 0.7rem;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 3rem; text-align: center;
+    }
+    .contact-box p { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 0.8rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+    }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">rheymar.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1>Hi, I'm <span>Rhey Mar<br>Dimayuga</span></h1>
+    <p class="hero-sub">
+      Data Analyst turning raw data into clear business insights — through dashboards, SQL queries, and storytelling with numbers.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- STATS -->
+<section id="about">
+  <div class="section-inner">
+    <div class="stats">
+      <div class="stat"><span class="stat-num">4+</span><span class="stat-label">Tools Mastered</span></div>
+      <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Dashboards Built</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Data-Driven</span></div>
+      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Curiosity</span></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About Me</div>
+        <h2>Analyst. Problem Solver. Data Storyteller.</h2>
+        <p>I'm a Data Analyst with a passion for transforming complex datasets into actionable insights. I specialize in building interactive dashboards and reports that help businesses make smarter, faster decisions.</p>
+        <p>Whether it's cleaning messy data in SQL, building dynamic models in Excel, or crafting compelling visuals in Power BI — I bring clarity to complexity.</p>
+      </div>
+      <div>
+        <ul class="about-list">
+          <li>Power BI Dashboard Development</li>
+          <li>DAX Measures & Calculated Columns</li>
+          <li>SQL Querying & Data Modeling</li>
+          <li>Excel — PivotTables, Power Query</li>
+          <li>KPI Tracking & Performance Reporting</li>
+          <li>Call Center & Operations Analytics</li>
+          <li>Data Cleaning & Transformation</li>
+          <li>Storytelling with Data</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">What I Use</div>
+    <h2>Skills & Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Power BI</div>
+        <div class="skill-desc">Interactive dashboards, slicers, conditional formatting, and report design for business intelligence.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">DAX</div>
+        <div class="skill-desc">Custom measures, calculated columns, CALCULATE, DIVIDE, time intelligence, and KPI logic.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">SQL</div>
+        <div class="skill-desc">Data extraction, joins, aggregations, subqueries, and database querying for analytical reporting.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📗</div>
+        <div class="skill-name">Excel</div>
+        <div class="skill-desc">PivotTables, Power Query, VLOOKUP, dynamic charts, and advanced formula building.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">My Work</div>
+    <h2>Featured Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tag">Power BI · Operations</div>
+        <div class="project-title">2024 Call Center Performance Dashboard</div>
+        <div class="project-desc">End-to-end operational dashboard tracking 500 calls across inbound/outbound channels. Includes AHT, ACW, Talk Time, Abandon Rate, and agent-level QA scoring with conditional formatting and monthly slicers.</div>
+        <div class="project-tools">
+          <span class="tool-badge">Power BI</span>
+          <span class="tool-badge">DAX</span>
+          <span class="tool-badge">Power Query</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">SQL · Excel</div>
+        <div class="project-title">Sales Performance Analysis</div>
+        <div class="project-desc">Analyzed monthly sales trends across product categories using SQL for data extraction and Excel for dynamic PivotTable reporting. Identified top-performing segments and underperforming regions.</div>
+        <div class="project-tools">
+          <span class="tool-badge">SQL</span>
+          <span class="tool-badge">Excel</span>
+          <span class="tool-badge">PivotTable</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Power BI · HR</div>
+        <div class="project-title">Agent Performance Tracker</div>
+        <div class="project-desc">Built an agent-level performance matrix with KPIs including evaluation scores, handle time, and abandon rates. Used DAX conditional logic to flag agents needing coaching or recognition.</div>
+        <div class="project-tools">
+          <span class="tool-badge">Power BI</span>
+          <span class="tool-badge">DAX</span>
+          <span class="tool-badge">Conditional Formatting</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-box">
+      <div class="section-label" style="margin-bottom:0.5rem;">Get In Touch</div>
+      <h2 style="margin-bottom:1rem;">Let's Work Together</h2>
+      <p>I'm currently open to Data Analyst roles. If you have a project, opportunity, or just want to connect — feel free to reach out.</p>
+      <div class="contact-links">
+        <a href="mailto:your@email.com" class="btn btn-primary">✉ Email Me</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn btn-outline">LinkedIn</a>
+        <a href="https://github.com/yourusername" target="_blank" class="btn btn-outline">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2024 Rhey Mar Dimayuga · Built with HTML & hosted on GitHub Pages
+</footer>
+
+</body>
+</html>
