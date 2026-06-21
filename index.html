@@ -200,6 +200,11 @@
       border: 1px solid var(--border); border-radius: 4px;
       padding: 0.2rem 0.5rem;
     }
+    .project-img {
+      width: 100%; border-radius: 8px; margin-bottom: 1rem;
+      border: 1px solid var(--border); object-fit: cover;
+      display: block;
+    }
 
     /* ABOUT */
     .about-grid {
@@ -344,7 +349,7 @@
     <div class="projects-grid">
 
       <div class="project-card">
-        <img src="dashboard.png" alt="Call Center Dashboard" style="width:100%; border-radius:8px; margin-bottom:1rem; border:1px solid #1e2d45;"/>
+        <img src="dashboard.png" alt="Call Center Dashboard" class="project-img"/>
         <div class="project-tag">Power BI · Operations</div>
         <div class="project-title">2024 Call Center Performance Dashboard</div>
         <div class="project-desc">End-to-end operational dashboard tracking 500 calls across inbound/outbound channels. Includes AHT, ACW, Talk Time, Abandon Rate, and agent-level QA scoring with conditional formatting and monthly slicers.</div>
